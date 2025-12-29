@@ -1,7 +1,5 @@
-import { NextRequest,NextResponse } from "next/server";
-import { PrismaClient } from "@/app/generated/prisma/client";
-
-const prismaClient = new PrismaClient({})
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/app/lib/prisma";
 
 export async function POST(req: NextRequest){
     // we get this req object that is of tpe NextRequest
@@ -11,7 +9,7 @@ export async function POST(req: NextRequest){
 
     //console.log(data);
     
-    await prismaClient.user.create({
+    await prisma.user.create({
         data:{
             username: data.username,
             password: data.password
